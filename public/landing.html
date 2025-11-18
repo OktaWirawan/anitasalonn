@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anita Salon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .landing-page {
+            background: url('../public/SRC/bg1.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #3e2e2e;
+            position: relative;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar .nav-left {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar .nav-right a {
+            text-decoration: none;
+            color: #3e2e2e;
+            font-weight: bold;
+        }
+
+        .btn-login {
+            border: 1px solid #3e2e2e;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-login:hover {
+            background-color: #3e2e2e;
+            color: #fff;
+        }
+
+        .content {
+            text-align: left;
+            padding: 60px 40px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.7);
+            margin: 40px;
+            border-radius: 12px;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .nav-right {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .content {
+                margin: 20px;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <div class="navbar">
+            <div class="nav-left">Anita Salon</div>
+            <div class="nav-right">
+                <a href="#">About</a>
+                <a href="#">Products</a>
+                <a href="#">Contact</a>
+                <a href="register.html" class="btn-login">Sign Up</a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Selamat Datang di Anita Salon</h1>
+            <p>
+                Anita Salon menghadirkan pengalaman kecantikan yang nyaman, profesional, dan mudah diakses.
+                Kami percaya bahwa setiap orang berhak tampil percaya diri dengan cara yang sederhana dan personal.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

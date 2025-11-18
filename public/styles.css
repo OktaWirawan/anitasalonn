@@ -1,0 +1,686 @@
+:root {
+    --primary-color: #78350F;
+    --secondary-color: #E8D5C4;
+    --accent-color: #A16207;
+    --text-dark: #333;
+    --text-light: #f8f9fa;
+    --font-primary: 'Playfair Display', serif;
+    --font-secondary: 'Lato', sans-serif;
+    --navbar-height: 70px;
+}
+
+body {
+    font-family: var(--font-secondary);
+    color: var(--text-dark);
+    line-height: 1.7;
+    background-color: #FFF8F0;
+    padding-top: var(--navbar-height);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.section-title {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.section-title h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.btn-brand {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-brand .fas {
+    transition: transform 0.3s ease;
+}
+
+.btn-brand:hover {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-brand:hover .fas {
+    transform: translateX(3px);
+}
+
+.btn-outline-brand {
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline-brand:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+/* New Navbar Design */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: padding 0.3s ease;
+    height: var(--navbar-height);
+    padding: 0.5rem 0;
+}
+
+.navbar-brand {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-color) !important;
+}
+
+.navbar .nav-link {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin: 0 4px;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--accent-color);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-toggler {
+    border-color: var(--primary-color);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(120, 53, 15, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar .btn-brand {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+
+/* Hero Section */
+#hero {
+    height: calc(100vh - var(--navbar-height));
+    margin-top: calc(-1 * var(--navbar-height));
+    background: url('https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-salon-hero-image.webp')
+                no-repeat center center / cover;
+    background-attachment: fixed; /* 🔒 kunci biar tidak bergerak */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light);
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.hero-content .btn-brand.btn-lg .fas {
+    /* Specific icon size for large hero button */
+    font-size: 1.1em;
+    /* Make icon slightly larger in hero button */
+}
+
+
+/* About Us Section */
+#about {
+    padding: 80px 0;
+}
+
+#about img {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Services Section */
+#services {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.service-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-card .icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.service-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Gallery Section */
+#gallery {
+    padding: 80px 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    /* height: 250px; */
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Booking Section */
+#booking {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(120, 53, 15, 0.25);
+}
+
+/* Pricing Table */
+#pricing {
+    padding: 80px 0;
+}
+
+.pricing-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(120, 53, 15, 0.1);
+    border-color: var(--primary-color);
+}
+
+.pricing-card .price {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin: 20px 0;
+}
+
+.pricing-card .price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #777;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.pricing-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.pricing-card ul li:last-child {
+    border-bottom: none;
+}
+
+/* Stylists Section */
+#stylists {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.stylist-card {
+    background: #fff;
+    border-radius: 15px;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.stylist-card:hover {
+    transform: translateY(-10px);
+}
+
+.stylist-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--secondary-color);
+}
+
+.stylist-card h4 {
+    font-size: 1.4rem;
+}
+
+.stylist-card p.role {
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.stylist-socials a {
+    color: var(--primary-color);
+    margin: 0 5px;
+    font-size: 1.2rem;
+}
+
+.stylist-socials a:hover {
+    color: var(--accent-color);
+}
+
+/* Testimonials Section - Swiper */
+#testimonials {
+    padding: 80px 0;
+}
+
+.testimonial-slider.swiper {
+    /* Ensure Swiper styles apply correctly */
+    padding-bottom: 40px;
+    /* Space for pagination */
+}
+
+.testimonial-slider .swiper-slide {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    height: auto;
+    /* Ensure slides adapt to content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-slider img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+    /* Center image */
+}
+
+.testimonial-slider .client-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: 10px;
+}
+
+.testimonial-slider .stars {
+    color: #FFD700;
+    /* Gold color for stars */
+    margin-bottom: 10px;
+}
+
+.swiper-pagination {
+    bottom: 0px !important;
+    /* Position pagination at the very bottom */
+}
+
+.swiper-pagination-bullet {
+    background-color: #ccc;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--primary-color) !important;
+}
+
+
+/* Blog Section */
+#blog {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+}
+
+.blog-card img {
+    width: 100%;
+    /* height: 200px; */
+    object-fit: cover;
+}
+
+.blog-card .card-body {
+    padding: 25px;
+}
+
+.blog-card .card-title {
+    font-size: 1.3rem;
+}
+
+.blog-card .card-text {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.blog-card .read-more {
+    color: var(--accent-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.blog-card .read-more:hover {
+    text-decoration: underline;
+}
+
+/* FAQ Section */
+#faq {
+    padding: 80px 0;
+}
+
+.accordion-button {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(120, 53, 15, 0.25);
+}
+
+.accordion-item {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+}
+
+/* Contact Section */
+#contact {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.contact-info .icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    width: 40px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(120, 53, 15, 0.25);
+}
+
+.social-icons a {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
+
+#map iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    border: 0;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 40px 0 20px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav {
+        /* Style for collapsed menu */
+        background-color: #fff;
+        padding: 1rem;
+        border-top: 1px solid #eee;
+        margin-top: 0.2rem;
+    }
+
+    .navbar .nav-link {
+        margin: 5px 0;
+        display: block;
+    }
+
+    .navbar .nav-link::after {
+        left: 0;
+        /* Reset for block display */
+    }
+
+    .navbar .btn-brand {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        width: auto;
+        /* Allow button to size to content in collapsed */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .section-title h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .pricing-card,
+    .service-card,
+    .stylist-card,
+    .blog-card {
+        margin-bottom: 30px;
+    }
+
+    .contact-info {
+        margin-bottom: 30px;
+    }
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+.success-message { 
+    background-color: #e8f5e9; 
+    color: #2e7d32; 
+    border: 1px solid #c8e6c9; 
+}
+.fixed-profile {
+    position: fixed; /* Kunci posisi relatif terhadap layar */
+    top: 50%; /* Pindahkan ke tengah layar */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Penyesuaian agar benar-benar di tengah */
+    z-index: 999; /* Pastikan ia berada di atas elemen lain */
+    text-align: center;
+    /* Tambahkan style untuk teks di sini */
+}

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Anita Salon</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+    /* Reset & Body tetap sama */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+    }
+
+    /* Header Styles tetap sama */
+    .admin-header {
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        color: white;
+        padding: 25px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .admin-header h1 {
+        font-weight: 700;
+        font-size: 1.8rem;
+        margin: 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+    }
+
+    /* --- Perbaikan Tombol pada Header (.btn-warning) --- */
+    .admin-header .btn-warning {
+        background: #ffc107; 
+        color: #212529; 
+        border: none;
+        font-weight: 600;
+        padding: 10px 25px;
+        border-radius: 8px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+        transition: all 0.3s ease;
+    }
+
+    .admin-header .btn-warning:hover {
+        background-color: #e0a800; 
+        transform: translateY(-1px); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    }
+    
+    /* Navigation Tabs & Tab Content tetap sama */
+    .nav-tabs {
+        border-bottom: 3px solid #8b4513;
+        background: white;
+        padding: 10px 15px 0;
+        border-radius: 15px 15px 0 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-tabs .nav-link {
+        color: #6c757d;
+        font-weight: 500;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px 10px 0 0;
+        transition: all 0.3s ease;
+        margin-right: 5px;
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: #8b4513;
+        background-color: #f8f9fa;
+    }
+
+    .nav-tabs .nav-link.active {
+        background: #8b4513; 
+        color: white;
+        border: none;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+    }
+
+    .tab-content {
+        background: white;
+        padding: 30px;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        min-height: 500px;
+    }
+
+    .tab-content h2 {
+        color: #8b4513;
+        font-weight: 700;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #8b4513;
+    }
+
+    /* Card Styles & Detail Row & Badges tetap sama */
+    .data-card {
+        margin-bottom: 25px;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-left: 5px solid #a0522d;
+    }
+
+    .data-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+    }
+
+    .data-card .card-body {
+        padding: 20px;
+    }
+
+    .data-card .card-title {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .data-card .card-subtitle {
+        color: #7f8c8d;
+        font-weight: 500;
+    }
+
+    .detail-row {
+        font-size: 0.9rem;
+        margin-top: 8px;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+
+    .detail-row i {
+        width: 20px;
+        text-align: center;
+    }
+
+    .badge {
+        padding: 8px 15px;
+        font-weight: 500;
+        border-radius: 50px;
+        font-size: 0.85rem;
+    }
+
+    /* --- Perbaikan Umum Tombol Aksi (.booking-actions button, .user-actions button) --- */
+    .booking-actions button,
+    .user-actions button {
+        margin: 3px;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        color: white; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
+    }
+
+    /* --- Perbaikan Tombol Warna Spesifik (Menghilangkan Gradien) --- */
+    .btn-info {
+        background: #17a2b8; 
+    }
+
+    .btn-info:hover {
+        background-color: #138496; 
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-danger {
+        background: #dc3545; 
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+        background: #007bff; 
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-success {
+        background: #28a745; 
+    }
+    
+    .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+        background: #6c757d; 
+        border: none;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #545b62;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Table Styles tetap sama */
+    .table-responsive {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .table {
+        margin: 0;
+    }
+
+    .table thead {
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        color: white;
+    }
+
+    .table thead th {
+        border: none;
+        padding: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+    }
+
+    .table tbody td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(139, 69, 19, 0.03);
+    }
+
+    /* Modal Styles tetap sama */
+    .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 20px 25px;
+    }
+
+    .modal-header .modal-title {
+        font-weight: 600;
+    }
+
+    .modal-header .btn-close {
+        filter: brightness(0) invert(1);
+    }
+
+    .modal-body {
+        padding: 25px;
+    }
+
+    .modal-footer {
+        padding: 20px 25px;
+        border-top: 1px solid #e9ecef;
+    }
+
+    /* Form Styles & Alert Styles & Loading Animation & Responsive Adjustments & Scrollbar Styling tetap sama */
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 8px;
+    }
+
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 2px solid #e9ecef;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #8b4513;
+        box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.15);
+    }
+
+    .alert {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .alert-warning {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+        color: #856404;
+    }
+
+    .alert-info {
+        background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+        color: #0c5460;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .fa-sync.fa-spin {
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+        .admin-header h1 {
+            font-size: 1.4rem;
+        }
+
+        .nav-tabs .nav-link {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+
+        .tab-content {
+            padding: 20px;
+        }
+
+        .booking-actions, .user-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a0522d;
+    }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1><i class="fas fa-tools me-2"></i> Panel Admin</h1>
+            <button id="adminLogoutBtn" class="btn btn-warning">
+                Logout <i class="fas fa-sign-out-alt ms-1"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="true">
+                    <i class="fas fa-calendar-check me-1"></i> Janji Temu (Order)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="users" aria-selected="false">
+                    <i class="fas fa-users me-1"></i> Manajemen Pengguna
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">
+                    <i class="fas fa-envelope me-1"></i> Pesan Kontak
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content py-4">
+            
+            <div class="tab-pane fade show active" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+                <h2 class="mb-3">Daftar Janji Temu Masuk</h2>
+                
+                <div class="row mb-4 g-3 align-items-center">
+                    <div class="col-md-3">
+                        <label for="bookingFilterDate" class="form-label visually-hidden">Filter Tanggal</label>
+                        <select class="form-select" id="bookingFilterDate">
+                            <option value="all">Semua Tanggal</option>
+                            <option value="today">Hari Ini</option>
+                            <option value="upcoming">Mendatang</option>
+                            <option value="past">Lewat</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="bookingFilterStatus" class="form-label visually-hidden">Filter Status</label>
+                        <select class="form-select" id="bookingFilterStatus">
+                            <option value="all">Semua Status</option>
+                            <option value="Dikonfirmasi">Dikonfirmasi</option>
+                            <option value="Tertunda">Belum Dikonfirmasi</option>
+                            <option value="Selesai">Selesai</option>
+                            <option value="Dibatalkan">Dibatalkan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="bookingSearch" class="form-label visually-hidden">Cari</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="bookingSearch" placeholder="Cari nama, email, atau layanan...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="bookingsContainer">
+                    <p class="text-center text-muted">Memuat data...</p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+                <h2 class="mb-3">Manajemen Akun Pengguna</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Peran</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr><td colspan="5" class="text-center text-muted">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <h2 class="mb-3">Pesan Kontak Masuk</h2>
+                <div class="row" id="contactsContainer">
+                    <p class="text-center text-muted">Memuat data...</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="modal fade" id="editBookingModal" tabindex="-1" aria-labelledby="editBookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBookingModalLabel">Edit Janji Temu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editBookingForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="editBookingId">
+                        <div class="mb-3"><label for="editStatus" class="form-label">Status</label><select id="editStatus" class="form-select"><option>Tertunda</option><option>Dikonfirmasi</option><option>Dibatalkan</option><option>Selesai</option></select></div>
+                        <div class="mb-3"><label for="editName" class="form-label">Nama</label><input type="text" id="editName" class="form-control" required disabled></div>
+                        <div class="mb-3"><label for="editEmail" class="form-label">Email</label><input type="email" id="editEmail" class="form-control" required disabled></div>
+                        <div class="mb-3"><label for="editPhone" class="form-label">Nomor Telepon</label><input type="tel" id="editPhone" class="form-control" disabled></div>
+                        <div class="mb-3"><label for="editService" class="form-label">Layanan</label><input type="text" id="editService" class="form-control" required></div>
+                        <div class="mb-3"><label for="editMessage" class="form-label">Catatan</label><textarea id="editMessage" class="form-control"></textarea></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit Akun Pengguna</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editUserForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="editUserId">
+                        <div class="mb-3"><label for="editUserName" class="form-label">Nama</label><input type="text" id="editUserName" class="form-control" required></div>
+                        <div class="mb-3"><label for="editUserEmail" class="form-label">Email</label><input type="email" id="editUserEmail" class="form-control" required disabled></div>
+                        <div class="mb-3"><label for="editUserRole" class="form-label">Peran</label><select id="editUserRole" class="form-select"><option value="user">User</option><option value="admin">Admin</option></select></div>
+                        <div class="alert alert-warning small mt-3">Mengubah peran menjadi Admin memberikan akses penuh ke Panel ini.</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000'; 
+        const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+        let allBookingsData = []; 
+        let bookingSearchTimeout; // Untuk debounce pencarian
+
+        // --- FUNGSI UTILITY: HITUNG WAKTU RELATIF ---
+
+        const isSameDay = (date1, date2) => {
+            return date1.getFullYear() === date2.getFullYear() &&
+                   date1.getMonth() === date2.getMonth() &&
+                   date1.getDate() === date2.getDate();
+        };
+
+        function getRelativeTime(dateString, timeString) {
+            const appointmentTime = new Date(`${dateString}T${timeString}:00`); 
+            const now = new Date();
+            
+            if (isNaN(appointmentTime.getTime())) return 'Waktu Tidak Valid';
+
+            const startOfDayAppointment = new Date(appointmentTime.getFullYear(), appointmentTime.getMonth(), appointmentTime.getDate()).getTime();
+            const startOfDayNow = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            
+            const diffDays = Math.round((startOfDayAppointment - startOfDayNow) / (1000 * 60 * 60 * 24));
+            
+            if (appointmentTime < now) {
+                if (isSameDay(appointmentTime, now)) return '<span class="text-danger"><i class="fas fa-exclamation-circle me-1"></i> TELAT HARI INI</span>';
+                if (diffDays === -1) return '<span class="text-danger"><i class="fas fa-clock me-1"></i> Kemarin</span>';
+                return `<span class="text-danger"><i class="fas fa-calendar-times me-1"></i> ${Math.abs(diffDays)} hari lalu</span>`;
+            }
+
+            if (diffDays === 0) {
+                return '<span class="text-success"><i class="fas fa-calendar-day me-1"></i> HARI INI</span>';
+            } else if (diffDays === 1) {
+                return '<span class="text-warning text-dark"><i class="fas fa-sun me-1"></i> BESOK</span>';
+            } else if (diffDays > 1) {
+                return `<span class="text-primary"><i class="fas fa-calendar-alt me-1"></i> Dalam ${diffDays} hari</span>`;
+            }
+            
+            return 'Waktu Tidak Valid';
+        }
+
+
+        // --- FUNGSI UTAMA UNTUK KONEKSI API (CRUD HELPERS) ---
+        async function fetchData(resource) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/${resource}`); 
+                if (!response.ok) throw new Error(`Gagal mengambil data ${resource}. Status: ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`Error fetching ${resource}:`, error);
+                Swal.fire('Error Koneksi', `Gagal mengambil data ${resource}. Pastikan Server berjalan.`, 'error');
+                return [];
+            }
+        }
+
+        async function updateData(resource, id, data) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/${resource}/${id}`, {
+                    // PERBAIKAN: Mengganti PATCH menjadi PUT agar sesuai dengan server.js
+                    method: 'PUT', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) {
+                    const errorBody = await response.json();
+                    throw new Error(errorBody.message || `Status ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                Swal.fire('Error Update', `Gagal menyimpan perubahan: ${error.message}`, 'error');
+                return null;
+            }
+        }
+
+        async function deleteData(resource, id) {
+             try {
+                const response = await fetch(`${API_BASE_URL}/api/${resource}/${id}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    const errorBody = await response.json();
+                    throw new Error(errorBody.message || `Status ${response.status}`);
+                }
+                return { success: true };
+            } catch (error) {
+                Swal.fire('Error Hapus', `Gagal menghapus data: ${error.message}`, 'error');
+                return { success: false };
+            }
+        }
+        
+        // --- FUNGSI FILTER DAN PENCARIAN ---
+
+        function applyBookingFilters(bookings) {
+            const dateFilter = document.getElementById('bookingFilterDate').value;
+            const statusFilter = document.getElementById('bookingFilterStatus').value;
+            const searchTerm = document.getElementById('bookingSearch').value.toLowerCase();
+            const now = new Date();
+
+            return bookings.filter(b => {
+                let appointmentTime = new Date(`${b.date}T${b.time}:00`);
+                if (isNaN(appointmentTime.getTime())) return true; 
+
+                // 1. Filter Tanggal
+                let passesDateFilter = true;
+                if (dateFilter !== 'all') {
+                    if (dateFilter === 'today') {
+                        passesDateFilter = isSameDay(appointmentTime, now);
+                    } else if (dateFilter === 'upcoming') {
+                        // Mendatang: Hari ini atau di masa depan
+                        passesDateFilter = appointmentTime >= now;
+                    } else if (dateFilter === 'past') {
+                        // Lewat: Sebelum hari ini
+                        passesDateFilter = appointmentTime < now;
+                    }
+                }
+
+                // 2. Filter Status
+                let passesStatusFilter = statusFilter === 'all' || b.status === statusFilter;
+                
+                // 3. Pencarian (Search)
+                let passesSearch = searchTerm === '' ||
+                                     b.name.toLowerCase().includes(searchTerm) ||
+                                     b.email.toLowerCase().includes(searchTerm) ||
+                                     b.service.toLowerCase().includes(searchTerm);
+
+                return passesDateFilter && passesStatusFilter && passesSearch;
+            });
+        }
+
+
+        // --- FUNGSI RENDER BOOKINGS ---
+
+        async function renderBookings(forceRefresh = false) {
+            const container = document.getElementById('bookingsContainer');
+            container.innerHTML = '<p class="text-center text-muted"><i class="fas fa-sync fa-spin me-2"></i> Memuat data janji temu...</p>';
+
+            // Load data jika cache kosong atau dipaksa refresh
+            if (allBookingsData.length === 0 || forceRefresh) {
+                allBookingsData = await fetchData('bookings');
+            }
+            
+            let filteredBookings = applyBookingFilters(allBookingsData);
+            
+            // Urutkan: Mendatang duluan (asc), lalu yang sudah lewat (desc)
+            filteredBookings.sort((a, b) => {
+                const timeA = new Date(`${a.date}T${a.time}:00`).getTime();
+                const timeB = new Date(`${b.date}T${b.time}:00`).getTime();
+                
+                // Jika keduanya valid
+                if (!isNaN(timeA) && !isNaN(timeB)) {
+                    // Urutkan yang akan datang (sekarang ke masa depan)
+                    const now = new Date().getTime();
+                    const isAUpcoming = timeA >= now;
+                    const isBUpcoming = timeB >= now;
+
+                    if (isAUpcoming && isBUpcoming) return timeA - timeB; // Keduanya akan datang (asc)
+                    if (!isAUpcoming && !isBUpcoming) return timeB - timeA; // Keduanya sudah lewat (desc)
+                    if (isAUpcoming) return -1; // A akan datang, B sudah lewat
+                    return 1; // B akan datang, A sudah lewat
+                }
+                // Jika ada data yang rusak, biarkan di belakang
+                return 0; 
+            });
+
+
+            if (filteredBookings.length === 0) {
+                container.innerHTML = '<p class="alert alert-info text-center">Tidak ada janji temu yang cocok dengan filter saat ini.</p>';
+                return;
+            }
+
+            container.innerHTML = filteredBookings.map(b => `
+                <div class="col-lg-4 col-md-6">
+                    <div class="card data-card shadow-sm" data-id="${b.id}" data-status="${b.status}" 
+                        style="border-left: 5px solid ${b.status === 'Dikonfirmasi' ? '#28a745' : b.status === 'Tertunda' ? '#ffc107' : '#dc3545'};">
+                        <div class="card-body">
+                            <h5 class="card-title">${b.name} (<span class="text-primary">${b.email}</span>)</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${b.service}</h6>
+                            
+                            <div class="detail-row">
+                                ${getRelativeTime(b.date, b.time)}
+                            </div>
+                            
+                            <div class="detail-row text-dark">
+                                <i class="fas fa-clock me-1"></i> Tanggal/Waktu: <strong>${b.date} @ ${b.time}</strong>
+                            </div>
+                            <div class="detail-row text-dark mb-2">
+                                <i class="fas fa-phone me-1"></i> Telepon: <strong>${b.phone || '-'}</strong>
+                            </div>
+                            
+                            <p class="card-text">Status: <span class="badge ${b.status === 'Dikonfirmasi' ? 'bg-success' : b.status === 'Tertunda' ? 'bg-warning text-dark' : 'bg-danger'}">${b.status}</span></p>
+                            <p class="small text-muted mb-3">Pesan: ${b.message || '-'}</p>
+                            
+                            <div class="booking-actions">
+                                <button class="btn btn-sm btn-info edit-booking-btn" 
+                                    data-id="${b.id}" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#editBookingModal" 
+                                    data-name="${b.name}" 
+                                    data-email="${b.email}" 
+                                    data-phone="${b.phone || ''}" 
+                                    data-service="${b.service}" 
+                                    data-message="${b.message || ''}" 
+                                    data-status="${b.status}">Edit</button>
+                                <button class="btn btn-sm btn-danger delete-booking-btn" data-id="${b.id}"><i class="fas fa-trash"></i> Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            setupBookingEventListeners();
+        }
+        
+        // --- EVENT LISTENERS UNTUK FILTER DAN SEARCH (MENGGUNAKAN RENDER BOOKINGS) ---
+        function setupBookingFilters() {
+            document.getElementById('bookingFilterDate').addEventListener('change', () => renderBookings());
+            document.getElementById('bookingFilterStatus').addEventListener('change', () => renderBookings());
+            
+            // Debounce untuk Search
+            document.getElementById('bookingSearch').addEventListener('input', () => {
+                clearTimeout(bookingSearchTimeout);
+                bookingSearchTimeout = setTimeout(() => {
+                    renderBookings();
+                }, 300); // Tunggu 300ms setelah selesai mengetik
+            });
+        }
+
+
+        // --- FUNGSI RENDER (USERS, CONTACTS) & EVENT LISTENERS LAMA ---
+        
+        async function renderUsers() {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted"><i class="fas fa-sync fa-spin me-2"></i> Memuat data pengguna...</td></tr>';
+            
+            const users = await fetchData('users');
+            
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-info">Belum ada pengguna terdaftar.</td></tr>';
+                return;
+            }
+
+            // Urutkan Admin di atas
+            users.sort((a, b) => (a.role === 'admin' ? -1 : 1));
+            
+            tbody.innerHTML = users.map(u => `
+                <tr>
+                    <td>${u.id}</td>
+                    <td>${u.name}</td>
+                    <td>${u.email}</td>
+                    <td><span class="badge bg-${u.role === 'admin' ? 'danger' : 'success'}">${u.role.toUpperCase()}</span></td>
+                    <td class="user-actions">
+                        <button class="btn btn-sm btn-info edit-user-btn" data-id="${u.id}" data-name="${u.name}" data-email="${u.email}" data-role="${u.role}" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-sm btn-danger delete-user-btn" data-id="${u.id}" ${u.role === 'admin' ? 'disabled title="Tidak dapat menghapus Admin"' : ''}><i class="fas fa-trash"></i> Hapus</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            setupUserEventListeners();
+        }
+        
+        async function renderContacts() {
+            const container = document.getElementById('contactsContainer');
+            container.innerHTML = '<p class="text-center text-muted"><i class="fas fa-sync fa-spin me-2"></i> Memuat data pesan kontak...</p>';
+            
+            const contacts = await fetchData('contacts');
+            
+            if (contacts.length === 0) {
+                container.innerHTML = '<p class="alert alert-info text-center">Belum ada pesan kontak masuk.</p>';
+                return;
+            }
+            
+            // Urutkan Kontak Terbaru duluan
+            contacts.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+            container.innerHTML = contacts.map(c => `
+                <div class="col-lg-6 col-md-12">
+                    <div class="card data-card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">${c.subject}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Dari: ${c.name} (${c.email})</h6>
+                            <p class="card-text">${c.message.substring(0, 150)}${c.message.length > 150 ? '...' : ''}</p>
+                            <p class="small text-end mb-3">Diterima: ${new Date(c.timestamp).toLocaleDateString('id-ID')}</p>
+                            <button class="btn btn-sm btn-danger delete-contact-btn" data-id="${c.id}"><i class="fas fa-trash"></i> Hapus Pesan</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            setupContactEventListeners();
+        }
+
+
+        function setupBookingEventListeners() {
+            document.querySelectorAll('.edit-booking-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    document.getElementById('editBookingId').value = id;
+                    document.getElementById('editName').value = e.target.getAttribute('data-name');
+                    document.getElementById('editEmail').value = e.target.getAttribute('data-email');
+                    document.getElementById('editPhone').value = e.target.getAttribute('data-phone'); 
+                    document.getElementById('editService').value = e.target.getAttribute('data-service');
+                    document.getElementById('editMessage').value = e.target.getAttribute('data-message');
+                    document.getElementById('editStatus').value = e.target.getAttribute('data-status');
+                });
+            });
+
+            document.querySelectorAll('.delete-booking-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    Swal.fire({
+                        title: 'Hapus Janji Temu?', text: "Tindakan ini tidak bisa dibatalkan!", icon: 'warning',
+                        showCancelButton: true, confirmButtonText: 'Ya, Hapus!'
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            const deleteResult = await deleteData('bookings', parseInt(id));
+                            if (deleteResult.success) {
+                                Swal.fire('Dihapus!', 'Janji temu telah dihapus.', 'success');
+                                // Update cache dan render
+                                allBookingsData = allBookingsData.filter(b => b.id !== parseInt(id)); 
+                                renderBookings(); 
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        
+        document.getElementById('editBookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('editBookingId').value);
+            
+            const updatedData = {
+                service: document.getElementById('editService').value,
+                message: document.getElementById('editMessage').value,
+                status: document.getElementById('editStatus').value
+            };
+            
+            const result = await updateData('bookings', id, updatedData);
+            
+            if (result) {
+                Swal.fire('Berhasil!', 'Perubahan janji temu disimpan.', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('editBookingModal')).hide();
+                // Update cache setelah perubahan
+                allBookingsData = allBookingsData.map(b => b.id === id ? { ...b, ...updatedData } : b);
+                renderBookings(); 
+            }
+        });
+        
+        
+        function setupUserEventListeners() {
+            document.querySelectorAll('.edit-user-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    document.getElementById('editUserId').value = id;
+                    document.getElementById('editUserName').value = e.currentTarget.getAttribute('data-name');
+                    document.getElementById('editUserEmail').value = e.currentTarget.getAttribute('data-email');
+                    document.getElementById('editUserRole').value = e.currentTarget.getAttribute('data-role');
+                });
+            });
+
+            document.querySelectorAll('.delete-user-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    Swal.fire({
+                        title: 'Hapus Pengguna?', text: "Ini akan menghapus semua data terkait pengguna ini (di JSON Server).", icon: 'warning',
+                        showCancelButton: true, confirmButtonText: 'Ya, Hapus!'
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            const deleteResult = await deleteData('users', parseInt(id));
+                            if (deleteResult.success) {
+                                Swal.fire('Dihapus!', 'Pengguna telah dihapus.', 'success');
+                                renderUsers(); 
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        
+        document.getElementById('editUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('editUserId').value);
+            
+            const updatedData = {
+                name: document.getElementById('editUserName').value,
+                role: document.getElementById('editUserRole').value
+            };
+            
+            const result = await updateData('users', id, updatedData);
+            
+            if (result) {
+                Swal.fire('Berhasil!', 'Perubahan pengguna disimpan.', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+                renderUsers(); 
+            }
+        });
+        
+        function setupContactEventListeners() {
+             document.querySelectorAll('.delete-contact-btn').forEach(btn => {
+                 btn.addEventListener('click', async (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    Swal.fire({
+                        title: 'Hapus Pesan?', text: "Ini akan menghapus pesan kontak ini secara permanen.", icon: 'warning',
+                        showCancelButton: true, confirmButtonText: 'Ya, Hapus!'
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            const deleteResult = await deleteData('contacts', parseInt(id));
+                            if (deleteResult.success) {
+                                Swal.fire('Dihapus!', 'Pesan kontak telah dihapus.', 'success');
+                                renderContacts(); 
+                            }
+                        }
+                    });
+                });
+            });
+        }
+
+
+        // --- INIT & OTORISASI DASHBOARD ---
+
+        function handleAdminLogout() {
+            localStorage.removeItem('loggedInUserEmail');
+            localStorage.removeItem('userRole');
+            window.location.href = 'login.html'; 
+        }
+
+        async function initAdminDashboard() {
+            const userRole = localStorage.getItem('userRole');
+            
+            if (userRole !== 'admin') {
+                Swal.fire({
+                    title: 'Akses Ditolak',
+                    text: 'Anda tidak memiliki hak akses Admin. Silakan login ulang.',
+                    icon: 'error'
+                }).then(() => {
+                    window.location.href = 'login.html';
+                });
+                return;
+            }
+            
+            adminLogoutBtn.addEventListener('click', handleAdminLogout);
+            
+            // Muat semua data bookings dan simpan di cache (Force refresh true untuk init pertama)
+            await renderBookings(true); 
+            setupBookingFilters(); 
+            
+            // Atur event listener untuk perpindahan tab
+            document.getElementById('users-tab').addEventListener('shown.bs.tab', renderUsers);
+            document.getElementById('contacts-tab').addEventListener('shown.bs.tab', renderContacts);
+        }
+
+        document.addEventListener('DOMContentLoaded', initAdminDashboard);
+    </script>
+</body>
+</html>

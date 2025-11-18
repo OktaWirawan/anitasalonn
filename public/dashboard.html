@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anita Salon</title>
+    <meta name="description" content="Salon rambut eksklusif yang menawarkan penataan, pewarnaan, dan perawatan kecantikan. Pesan janji temu Anda hari ini!">
+    <meta name="keywords" content="salon rambut, penata rambut, stylis, kecantikan, potong rambut, pewarnaan, penataan, pemesanan">
+
+    <link rel="icon" href="https://www.codewithfaraz.com/tools/placeholder?size=32x32&bgColor=E8D5C4&textColor=78350F&text=AS" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="80">
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#hero">Anita Salon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Harga</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stylists">Penata Rambut</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Ulasan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+
+                    <li class="nav-item me-lg-2 dropdown" id="profileContainer" style="display: none;">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-lg me-2"></i>
+                            <span id="userNameDisplay">Akun Saya</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><h6 class="dropdown-header" id="userEmailDisplay"></h6></li>
+                            
+                            <li><a class="dropdown-item" href="#" id="profileDashboardLink"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+                            
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            <li id="logoutPlaceholder"><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ms-lg-2" id="authButtons" style="display: none;"> 
+                        <a class="btn btn-outline-brand me-2" href="login.html">Login</a>
+                        <a class="btn btn-brand" href="register.html">Daftar</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2" id="bookNowButton">
+                        <a class="btn btn-brand" href="#booking">
+                            Book Now <i class="fas fa-arrow-right ms-1 small"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content">
+            
+        </div>
+    </section>
+
+<section id="user-profile-dashboard" class="py-5 bg-light" style="display:none;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Dashboard Akun Saya</h2>
+            <p class="text-muted">Kelola riwayat janji temu dan pesan kontak Anda dengan mudah.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="true">
+                            <i class="fas fa-calendar-check me-2"></i>Riwayat Janji Temu
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
+                            <i class="fas fa-inbox me-2"></i>Pesan Kontak
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="dashboardTabsContent">
+                    
+                    <div class="tab-pane fade show active" id="history" role="tabpanel" aria-labelledby="history-tab">
+                        <div class="card shadow-sm border-0 rounded-4">
+                            <div class="card-body p-4">
+                                <h4 class="mb-3 fw-semibold">Janji Temu Mendatang & Selesai</h4>
+                                <ul class="list-group list-group-flush" id="userBookingHistory">
+                                    <li class="list-group-item text-center text-muted">Memuat data riwayat janji temu...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                        <div class="card shadow-sm border-0 rounded-4">
+                            <div class="card-body p-4">
+                                <h4 class="mb-3 fw-semibold">Pesan yang Saya Kirim</h4>
+                                <div class="alert alert-info small" role="alert">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Anda hanya akan melihat pesan kontak yang dikirim dengan email Anda.
+                                </div>
+                                <ul class="list-group list-group-flush" id="userContactHistory"> 
+                                    <li class="list-group-item text-center text-muted">Memuat Pesan Kontak...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Salon Kami</h2>
+                <p>Anita Salon, menciptakan keindahan dan kepercayaan diri sejak 2024.</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-salon-our-story.webp" alt="Interior Salon" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-lg-6">
+                    <h3>Cerita Kami</h3>
+                    <p>Anita Salon didirikan dengan misi sederhana: memberikan perawatan rambut yang luar biasa dalam lingkungan yang mewah dan ramah. Kami percaya bahwa gaya rambut yang hebat dapat mengubah tidak hanya penampilan Anda, tetapi juga seluruh pandangan hidup Anda.</p>
+                    <h4>Misi & Nilai Kami</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Keunggulan dalam setiap layanan.</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Hanya menggunakan produk premium yang ramah lingkungan.</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Pembelajaran dan inovasi berkelanjutan.</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i> Menciptakan pengalaman yang menenangkan dan memanjakan.</li>
+                    </ul>
+                    <a href="#stylists" class="btn btn-outline-brand mt-3">Temui Tim Kami</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Layanan Kami</h2>
+                <p>Manjakan diri Anda dengan beragam perawatan rambut profesional dari kami.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-cut"></i></div>
+                        <h4>Potong & Tata Rambut</h4>
+                        <p>Potongan presisi dan gaya kreatif untuk pria, wanita, dan anak-anak.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-palette"></i></div>
+                        <h4>Pewarnaan Rambut</h4>
+                        <p>Mulai dari highlight halus hingga transformasi berani menggunakan cat berkualitas terbaik.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-spa"></i></div>
+                        <h4>Perawatan Khusus</h4>
+                        <p>Keratin, deep conditioning, dan perawatan kulit kepala untuk rambut sehat dan berkilau.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-female"></i></div>
+                        <h4>Pengantin & Acara Spesial</h4>
+                        <p>Sanggul dan tatanan rambut elegan untuk pernikahan dan acara istimewa.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-leaf"></i></div>
+                        <h4>Perawatan Rambut Alami</h4>
+                        <p>Perawatan dan penataan khusus untuk jenis rambut alami dan bertekstur.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-hand-sparkles"></i></div>
+                        <h4>Manikur & Pedikur</h4>
+                        <p>Lengkapi penampilan Anda dengan layanan perawatan kuku kami.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri Kami</h2>
+                <p>Lihat transformasi dan gaya yang telah kami ciptakan.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-1.webp" data-bs-toggle="modal" data-bs-target="#galleryModal1">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-1.webp" alt="Gaya Rambut 1" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-2.webp" data-bs-toggle="modal" data-bs-target="#galleryModal2">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-2.webp" alt="Gaya Rambut 2" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-3.webp" data-bs-toggle="modal" data-bs-target="#galleryModal3">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-3.webp" alt="Gaya Rambut 3" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-4.webp" data-bs-toggle="modal" data-bs-target="#galleryModal4">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-4.webp" alt="Gaya Rambut 4" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-5.webp" data-bs-toggle="modal" data-bs-target="#galleryModal5">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-5.webp" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-6.webp" data-bs-toggle="modal" data-bs-target="#galleryModal6">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-6.webp" alt="Gaya Rambut 6" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-7.webp" data-bs-toggle="modal" data-bs-target="#galleryModal7">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-7.webp" alt="Gaya Rambut 7" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 gallery-item">
+                    <a href="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-8.webp" data-bs-toggle="modal" data-bs-target="#galleryModal8">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-8.webp" alt="Gaya Rambut 8" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="modal fade" id="galleryModal1" tabindex="-1" aria-labelledby="galleryModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModal1Label">Pameran Gaya</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-1.webp" class="img-fluid" alt="Gaya Rambut 1 Besar">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="galleryModal2" tabindex="-1" aria-labelledby="galleryModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModal2Label">Pameran Gaya</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-2.webp" class="img-fluid" alt="Gaya Rambut 2 Besar">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="galleryModal3" tabindex="-1" aria-labelledby="galleryModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModal3Label">Pameran Gaya</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/hair-style-3.webp" class="img-fluid" alt="Gaya Rambut 3 Besar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="booking" class="py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5">
+            <h2>Buat Janji Temu Anda</h2>
+            <p>Jadwalkan kunjungan Anda dengan mudah secara online.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <form id="bookingForm" class="booking-form shadow p-4 rounded-3 bg-light">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingName" class="form-label">Nama Lengkap</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="bookingName"
+                                placeholder="Nama Anda"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingEmail" class="form-label">Alamat Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="bookingEmail"
+                                placeholder="email@anda.com"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingPhone" class="form-label">Nomor Telepon</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="bookingPhone"
+                                placeholder="Nomor Telepon Anda"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingService" class="form-label">Pilih Layanan</label>
+                            <select class="form-select" id="bookingService" required>
+                                <option selected disabled value="">Pilih layanan...</option>
+                                <option value="haircut">Potong & Tata Rambut</option>
+                                <option value="coloring">Pewarnaan Rambut</option>
+                                <option value="treatment">Perawatan Khusus</option>
+                                <option value="bridal">Pengantin & Acara</option>
+                                <option value="natural">Perawatan Rambut Alami</option>
+                                <option value="nails">Manikur/Pedikur</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingDate" class="form-label">Tanggal Pilihan</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="bookingDate"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="bookingTime" class="form-label">Waktu Pilihan</label>
+                            <input
+                                type="time"
+                                class="form-control"
+                                id="bookingTime"
+                                min="09:00"
+                                max="18:00"
+                                required
+                            />
+                            <small class="text-muted">Jam operasional: 09:00 - 18:00</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bookingMessage" class="form-label"
+                            >Catatan Tambahan (opsional)</label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="bookingMessage"
+                            rows="3"
+                            placeholder="Ada permintaan khusus?"
+                        ></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-brand px-4">
+                            Kirim Permintaan Janji Temu
+                            <i class="fas fa-calendar-check ms-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="pricing" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Daftar Harga Kami</h2>
+                <p>Harga transparan untuk semua layanan premium kami.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card">
+                        <h4>Potong & Tata Rambut Dasar</h4>
+                        <div class="price">Rp 75.000 <span>mulai dari</span></div>
+                        <ul>
+                            <li>Konsultasi</li>
+                            <li>Cuci & Kondisioner</li>
+                            <li>Potongan Presisi</li>
+                            <li>Pengeringan Dasar</li>
+                            <li>-</li>
+                        </ul>
+                        <a href="#booking" class="btn btn-outline-brand">Book Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card">
+                        <h4>Paket Pewarnaan</h4>
+                        <div class="price">Rp 250.000 <span>mulai dari</span></div>
+                        <ul>
+                            <li>Konsultasi</li>
+                            <li>Warna Penuh / Highlight</li>
+                            <li>Perawatan Setelah Pewarnaan</li>
+                            <li>Potong & Tata Rambut</li>
+                            <li>Produk Premium</li>
+                        </ul>
+                        <a href="#booking" class="btn btn-brand">Book Now<i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card">
+                        <h4>Perawatan Mewah</h4>
+                        <div class="price">Rp 150.000 <span>mulai dari</span></div>
+                        <ul>
+                            <li>Konsultasi</li>
+                            <li>Masker Perawatan Intensif</li>
+                            <li>Pijat Kulit Kepala</li>
+                            <li>Pelurusan Keratin (opsional)</li>
+                            <li>Pengeringan & Penataan Akhir</li>
+                        </ul>
+                        <a href="#booking" class="btn btn-outline-brand">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stylists" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Temui Penata Rambut Kami</h2>
+                <p>Tim berbakat kami yang terdiri dari para profesional rambut yang penuh semangat.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stylist-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/stylist-1.webp" alt="Stylist Anita">
+                        <h4>Anita Wijaya</h4>
+                        <p class="role">Master Stylist</p>
+                        <p class="small">Pengalaman 10+ tahun, spesialis transformasi warna.</p>
+                        <div class="stylist-socials">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stylist-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/stylist-2.webp" alt="Stylist Lia">
+                        <h4>LIA</h4>
+                        <p class="role">Senior Stylist</p>
+                        <p class="small">Ahli dalam potongan rambut modern dan perawatan pria</p>
+                        <div class="stylist-socials">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stylist-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/stylist-3.webp" alt="Stylist Mia">
+                        <h4>Mia Tono</h4>
+                        <p class="role">Stylist & Ahli Pengantin</p>
+                        <p class="small">Spesialis sanggul kreatif dan penataan rambut untuk acara.</p>
+                        <div class="stylist-socials">
+                            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stylist-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/stylist-4.webp" alt="Stylist Samsul">
+                        <h4>Sam Taylor</h4>
+                        <p class="role">Junior Stylist</p>
+                        <p class="small">Memiliki passion dalam perawatan dan perbaikan rambut alami.</p>
+                        <div class="stylist-socials">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ulasan Pelanggan</h2>
+                <p>Apa kata pelanggan kami tentang pengalaman mereka di Anita Salon.</p>
+            </div>
+            <div class="testimonial-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/client-2.webp" alt="Pelanggan Siti">
+                        <p>“Saya benar-benar menyukai potongan rambut baru saya! Penata rambutnya benar-benar mendengarkan keinginan saya dan hasilnya sangat memuaskan. Suasana salon juga sangat menenangkan.”</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="client-name">Siti gangster.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/client-1.webp" alt="Pelanggan Tono">
+                        <p>“Layanan pewarnaan rambut terbaik yang pernah saya coba. Warnanya cerah dan persis seperti yang saya minta. Sangat merekomendasikan salon ini!”</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="client-name">Tono kang pukul</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/client-4.webp" alt="Pelanggan Lisa">
+                        <p>“Timnya sangat berbakat dan ramah. Saya selalu pulang dengan perasaan segar dan cantik. Salon andalan saya untuk semua kebutuhan rambut!”</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="client-name">Lisa Blacpink</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/client-3.webp" alt="Pelanggan Robert">
+                        <p>“Profesional, bersih, dan mereka menggunakan produk yang berkualitas. Penata rambut saya memberikan tips perawatan rambut di rumah yang sangat bagus. Pasti akan kembali lagi!”</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <p class="client-name">Robert Tali jagat.</p>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perawatan Rambut & Tren</h2>
+                <p>Tips terbaru, rekomendasi produk, dan inspirasi gaya.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/blogs-1.webp" alt="Postingan Blog 1">
+                        <div class="card-body">
+                            <p class="text-muted small">19 Juni 2025 | Perawatan Rambut</p>
+                            <h5 class="card-title">5 Tips Penting untuk Rambut Sehat di Musim Panas</h5>
+                            <p class="card-text">Jaga rambutmu tetap indah dan terlindungi selama musim panas dengan tips dari para ahli ini...</p>
+                            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right small"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/blogs-2.webp" alt="Postingan Blog 2">
+                        <div class="card-body">
+                            <p class="text-muted small">18 Juni 2025 | Tren</p>
+                            <h5 class="card-title">Tren Gaya Rambut Terpopuler untuk Musim Gugur 2025</h5>
+                            <p class="card-text">Temukan tampilan paling trendi untuk musim mendatang, mulai dari bob elegan hingga warna-warna berani...</p>
+                            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right small"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Hair%20Salon%20Website/blogs-3.webp" alt="Postingan Blog 3">
+                        <div class="card-body">
+                            <p class="text-muted small">12 Juni 2025 | Produk</p>
+                            <h5 class="card-title">Shampo Bebas Sulfat Favorit Kami</h5>
+                            <p class="card-text">Mengapa bebas sulfat lebih baik untuk rambut Anda dan rekomendasi terbaik kami untuk setiap jenis rambut...</p>
+                            <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-arrow-right small"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pertanyaan Umum</h2>
+                <p>Temukan jawaban untuk pertanyaan umum tentang layanan kami.</p>
+            </div>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Apa jam operasional salon Anda?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Salon kami buka Selasa hingga Sabtu dari pukul 09:00 hingga 19:00, dan Minggu dari pukul 10:00 hingga 17:00. Kami tutup pada hari Senin.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Apakah saya perlu membuat janji temu?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Meskipun kami menerima pelanggan tanpa janji (walk-in) jika ada ketersediaan, kami sangat menyarankan untuk memesan janji temu terlebih dahulu untuk memastikan Anda mendapatkan waktu dan penata rambut yang Anda inginkan. Anda dapat memesan secara online atau menelepon kami.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Bagaimana kebijakan pembatalan Anda?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Kami mohon pemberitahuan setidaknya 24 jam sebelumnya untuk setiap pembatalan atau penjadwalan ulang. Pembatalan yang terlambat atau tidak datang dapat dikenakan biaya.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Produk apa yang Anda gunakan?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Kami menggunakan pilihan produk perawatan rambut profesional berkualitas tinggi, termasuk pilihan yang bebas sulfat, bebas paraben, dan tidak diuji pada hewan. Penata rambut kami dapat merekomendasikan produk terbaik untuk jenis dan kebutuhan rambut Anda.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Kami ingin mendengar dari Anda. Hubungi kami untuk janji temu atau pertanyaan.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 contact-info">
+                    <h3>Anita Salon</h3>
+                    <p><i class="fas fa-map-marker-alt icon"></i> Jl. Raya Langsep No.2, Bareng, Kec. Klojen, Kota Malang, Jawa Timur 65116</p>
+                    <p><i class="fas fa-phone icon"></i> (0341) 566919</p>
+                    <p><i class="fas fa-envelope icon"></i> info@anitasalon.com</p>
+                    <h4 class="mt-4">Ikuti Kami</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <form id="contactForm" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="contactName" class="form-label visually-hidden">Nama</label>
+                                <input type="text" class="form-control" id="contactName" placeholder="Nama Anda" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="contactEmail" class="form-label visually-hidden">Email</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="Email Anda" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactSubject" class="form-label visually-hidden">Subjek</label>
+                            <input type="text" class="form-control" id="contactSubject" placeholder="Subjek" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactMessage" class="form-label visually-hidden">Pesan</label>
+                            <textarea class="form-control" id="contactMessage" rows="5" placeholder="Pesan Anda" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-brand">Kirim Pesan <i class="fas fa-paper-plane ms-2"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div id="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.353496010731!2d112.62886477457784!3d-7.962495692049909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d8d21b03375b425%3A0x868b201463e271e8!2sJl.%20Raya%20Langsep%20No.2%2C%20Bareng%2C%20Kec.%20Klojen%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065116!5e0!3m2!1sid!2sid!4v1718790000000!5m2!1sid!2sid" 
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="contact-map-iframe"
+                        title="Lokasi Anita Salon di Google Maps"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Anita Salon. Semua Hak Dilindungi.</p>
+            <p>Didesain dengan <i class="fas fa-heart text-danger"></i> </p>
+            <p><a href="#">Kebijakan Privasi</a> | <a href="#">Ketentuan Layanan</a></p>
+        </div>
+        <button id="scrollToTop" title="Go to top" style="display: none;"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Pengaturan Akun</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Ubah Password</h6>
+                    <form id="changePasswordForm">
+                        <div class="mb-3">
+                            <label for="oldPassword" class="form-label">Password Lama</label>
+                            <input type="password" class="form-control" id="oldPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">Password Baru</label>
+                            <input type="password" class="form-control" id="newPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmNewPassword" class="form-label">Konfirmasi Password Baru</label>
+                            <input type="password" class="form-control" id="confirmNewPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-brand">Simpan Perubahan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("bookingDate").setAttribute("min", today);
+        
+        // Inisialisasi tahun di footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+</script>
+<script src="script.js"></script> 
+
+</body>
+</html>

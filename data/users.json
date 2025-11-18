@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Admin Anita Salon",
+    "email": "admin@anitasalon.com",
+    "password": "asd12345",
+    "role": "admin",
+    "date": "2025-01-01"
+  },
+  {
+    "id": 3,
+    "name": "erf",
+    "email": "ell@gmail.com",
+    "password": "asd12345",
+    "role": "user",
+    "date": "2/10/2025"
+  },
+  {
+    "id": 4,
+    "name": "wirawan",
+    "email": "oktawir@gmail.com",
+    "password": "12345678",
+    "role": "user",
+    "date": "18/11/2025"
+  }
+]

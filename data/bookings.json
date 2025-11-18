@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "addaf",
+    "email": "ell@gmail.com",
+    "phone": "08123245313989",
+    "service": "treatment",
+    "date": "2025-10-02",
+    "time": "11:26",
+    "message": "hallo",
+    "status": "Dikonfirmasi",
+    "timestamp": "2025-10-01T17:21:22.219Z"
+  },
+  {
+    "id": 2,
+    "name": "itatul",
+    "email": "ell@gmail.com",
+    "phone": "081263388990",
+    "service": "coloring",
+    "date": "2025-10-03",
+    "time": "14:22",
+    "message": "done",
+    "status": "Dikonfirmasi",
+    "timestamp": "2025-10-03T05:22:26.954Z"
+  }
+]
